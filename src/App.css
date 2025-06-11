@@ -1,3 +1,9 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fef6f7; /* Your soft pastel shade */
+}
+
 .app-container {
   padding: 20px;
   max-width: 700px;
