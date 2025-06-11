@@ -12,6 +12,8 @@ export default function TimeTrackerApp() {
     return saved ? JSON.parse(saved) : [];
   });
   const [currentLog, setCurrentLog] = useState(null);
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editedTask, setEditedTask] = useState("");
 
   useEffect(() => {
     localStorage.setItem("logs", JSON.stringify(logs));
@@ -88,6 +90,19 @@ export default function TimeTrackerApp() {
     }, 250);
   };
 
+  const handleEdit = (index, currentTask) => {
+    setEditingIndex(index);
+    setEditedTask(currentTask);
+  };
+
+  const handleSaveEdit = () => {
+    const updatedLogs = [...logs];
+    updatedLogs[editingIndex].task = editedTask;
+    setLogs(updatedLogs);
+    setEditingIndex(null);
+    setEditedTask("");
+  };
+
   const buttonStyle = {
     border: 'none',
     padding: '10px 16px',
@@ -107,7 +122,7 @@ export default function TimeTrackerApp() {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container" style={{ minHeight: '100vh', backgroundColor: '#fef6f7' }}>
       <div className="floating-flowers">
         {[...Array(10)].map((_, i) => <div key={i} className="flower" />)}
       </div>
@@ -151,7 +166,20 @@ export default function TimeTrackerApp() {
           {logs.map((log, index) => (
             <tr key={index}>
               <td>{log.date}</td>
-              <td>{log.task}</td>
+              <td>
+                {editingIndex === index ? (
+                  <input
+                    type="text"
+                    value={editedTask}
+                    onChange={(e) => setEditedTask(e.target.value)}
+                    onBlur={handleSaveEdit}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSaveEdit()}
+                    autoFocus
+                  />
+                ) : (
+                  <span onClick={() => handleEdit(index, log.task)} style={{ cursor: 'pointer' }}>{log.task}</span>
+                )}
+              </td>
               <td>{log.startTime}</td>
               <td>{log.stopTime}</td>
               <td>{log.duration}</td>
