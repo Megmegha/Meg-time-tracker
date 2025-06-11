@@ -126,7 +126,7 @@ export default function TimeTrackerApp() {
       <div className="floating-flowers">
         {[...Array(10)].map((_, i) => <div key={i} className="flower" />)}
       </div>
-      <h1 className="title">🌸 Meg’s Time Tracker 🌸</h1>
+      <h1 className="title">🌸 Meg’s Time Tracker</h1>
 
       <input
         className="task-input"
