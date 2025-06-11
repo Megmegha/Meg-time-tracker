@@ -14,10 +14,16 @@ export default function TimeTrackerApp() {
   const [currentLog, setCurrentLog] = useState(null);
   const [editingIndex, setEditingIndex] = useState(null);
   const [editedTask, setEditedTask] = useState("");
+  const [title, setTitle] = useState(() => localStorage.getItem("customTitle") || "Meg’s Time Tracker");
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("logs", JSON.stringify(logs));
   }, [logs]);
+
+  useEffect(() => {
+    localStorage.setItem("customTitle", title);
+  }, [title]);
 
   const handleStart = () => {
     const start = new Date();
@@ -66,7 +72,7 @@ export default function TimeTrackerApp() {
     const worksheet = XLSX.utils.json_to_sheet(logs);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Logs");
-    XLSX.writeFile(workbook, "Meg_Time_Tracker.xlsx");
+    XLSX.writeFile(workbook, "Time_Tracker.xlsx");
   };
 
   const confetti = () => {
@@ -126,7 +132,21 @@ export default function TimeTrackerApp() {
       <div className="floating-flowers">
         {[...Array(10)].map((_, i) => <div key={i} className="flower" />)}
       </div>
-      <h1 className="title">🌸 Meg’s Time Tracker</h1>
+
+      {isEditingTitle ? (
+        <input
+          className="title-input"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          onBlur={() => setIsEditingTitle(false)}
+          onKeyDown={(e) => e.key === 'Enter' && setIsEditingTitle(false)}
+          autoFocus
+        />
+      ) : (
+        <h1 className="title" onClick={() => setIsEditingTitle(true)} style={{ cursor: 'pointer' }}>
+          🌸 {title}
+        </h1>
+      )}
 
       <input
         className="task-input"
