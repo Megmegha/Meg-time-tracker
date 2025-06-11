@@ -1,9 +1,6 @@
-npm install canvas-confetti
-import confettiLib from 'canvas-confetti';
-
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
-
+import confettiLib from 'canvas-confetti';
 export default function TimeTrackerApp() {
   const [task, setTask] = useState("");
   const [startTime, setStartTime] = useState(null);
