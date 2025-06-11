@@ -82,15 +82,15 @@
 
 .flower {
   position: absolute;
-  width: 32px;
-  height: 32px;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/620/620851.png');
+  width: 28px;
+  height: 28px;
+  background-image: url('https://png.pngtree.com/png-vector/20240618/ourmid/pngtree-pink-flower-vector-icon-png-image_12792222.png');
   background-size: contain;
   background-repeat: no-repeat;
   animation: float 12s linear infinite;
-  opacity: 0.4;
-  filter: blur(1px);
-  transform: scale(0.8);
+  opacity: 0.2;
+  filter: blur(0.5px);
+  transform: scale(0.85);
 }
 
 
