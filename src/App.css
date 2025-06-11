@@ -1,3 +1,120 @@
+.app-container {
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #fef9f4;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #85586F;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.task-input {
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.start-btn {
+  background-color: #f8d7e0;
+  color: #4a3f35;
+}
+
+.stop-btn {
+  background-color: #d1e7dd;
+  color: #3a3f35;
+}
+
+.excel-btn {
+  background-color: #ffe0ac;
+  color: #4a3f35;
+  margin-left: auto;
+}
+
+.start-btn, .stop-btn, .excel-btn {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fffefc;
+  border-radius: 8px;
+}
+
+.log-table th,
+.log-table td {
+  border-bottom: 1px solid #f4e5ec;
+  padding: 10px;
+  color: #6f4f4f;
+}
+
+.floating-flowers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.flower {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url('https://i.ibb.co/ZKVkqnz/flower.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: float 12s linear infinite;
+  opacity: 0.7;
+}
+
+.flower:nth-child(odd) { animation-duration: 14s; }
+.flower:nth-child(even) { animation-duration: 11s; }
+
+.flower:nth-child(1) { left: 10%; animation-delay: 0s; }
+.flower:nth-child(2) { left: 25%; animation-delay: 2s; }
+.flower:nth-child(3) { left: 40%; animation-delay: 4s; }
+.flower:nth-child(4) { left: 55%; animation-delay: 1s; }
+.flower:nth-child(5) { left: 70%; animation-delay: 3s; }
+.flower:nth-child(6) { left: 85%; animation-delay: 5s; }
+.flower:nth-child(7) { left: 30%; animation-delay: 6s; }
+.flower:nth-child(8) { left: 60%; animation-delay: 2s; }
+.flower:nth-child(9) { left: 80%; animation-delay: 4s; }
+.flower:nth-child(10) { left: 90%; animation-delay: 6s; }
+
+@keyframes float {
+  0% {
+    top: 100%;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    top: -50px;
+    transform: translateY(-100%) rotate(360deg);
+  }
+}
 .App {
   text-align: center;
 }
