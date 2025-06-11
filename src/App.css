@@ -82,15 +82,17 @@
 
 .flower {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/777/777092.png');
-;
+  width: 32px;
+  height: 32px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/620/620851.png');
   background-size: contain;
   background-repeat: no-repeat;
   animation: float 12s linear infinite;
-  opacity: 0.7;
+  opacity: 0.4;
+  filter: blur(1px);
+  transform: scale(0.8);
 }
+
 
 .flower:nth-child(odd) { animation-duration: 14s; }
 .flower:nth-child(even) { animation-duration: 11s; }
