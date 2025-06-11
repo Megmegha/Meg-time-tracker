@@ -84,7 +84,8 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  background-image: url('https://i.ibb.co/ZKVkqnz/flower.png');
+  background-image: url('https://cdn-icons-png.flaticon.com/512/777/777092.png');
+;
   background-size: contain;
   background-repeat: no-repeat;
   animation: float 12s linear infinite;
