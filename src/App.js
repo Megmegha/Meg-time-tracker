@@ -112,16 +112,6 @@ export default function TimeTrackerApp() {
   const updateLogField = (index, field, value) => {
     const updatedLogs = [...logs];
     updatedLogs[index][field] = value;
-
-    if (field === 'startTime' || field === 'stopTime') {
-      const start = new Date(`1970-01-01T${updatedLogs[index].startTime}`);
-      const stop = new Date(`1970-01-01T${updatedLogs[index].stopTime}`);
-      if (!isNaN(start) && !isNaN(stop) && stop > start) {
-        const seconds = (stop - start) / 1000;
-        updatedLogs[index].duration = formatDuration(seconds);
-      }
-    }
-
     setLogs(updatedLogs);
   };
 
@@ -217,28 +207,16 @@ export default function TimeTrackerApp() {
                 )}
               </td>
               <td>
-                <input
-                  type="time"
-                  value={log.startTime}
-                  onChange={(e) => updateLogField(index, 'startTime', e.target.value)}
-                />
+                <span onClick={() => setEditingIndex(index)} style={{ cursor: 'pointer' }}>{log.startTime}</span>
               </td>
               <td>
-                <input
-                  type="time"
-                  value={log.stopTime}
-                  onChange={(e) => updateLogField(index, 'stopTime', e.target.value)}
-                />
+                <span onClick={() => setEditingIndex(index)} style={{ cursor: 'pointer' }}>{log.stopTime}</span>
               </td>
               <td>
-                <input
-                  type="text"
-                  value={log.duration}
-                  onChange={(e) => updateLogField(index, 'duration', e.target.value)}
-                />
+                <span onClick={() => setEditingIndex(index)} style={{ cursor: 'pointer' }}>{log.duration}</span>
               </td>
               <td onClick={() => handleDelete(index)} style={{ cursor: 'pointer', textAlign: 'center' }}>
-                <img src="https://cdn-icons-png.flaticon.com/512/3405/3405244.png" alt="delete" style={{ width: '20px', height: '20px' }} />
+                <img src="https://cdn-icons-png.flaticon.com/512/6861/6861362.png" alt="delete" style={{ width: '20px', height: '20px' }} />
               </td>
             </tr>
           ))}
