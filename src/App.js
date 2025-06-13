@@ -109,12 +109,6 @@ export default function TimeTrackerApp() {
     setEditedTask("");
   };
 
-  const updateLogField = (index, field, value) => {
-    const updatedLogs = [...logs];
-    updatedLogs[index][field] = value;
-    setLogs(updatedLogs);
-  };
-
   const buttonStyle = {
     border: 'none',
     padding: '10px 16px',
@@ -206,17 +200,11 @@ export default function TimeTrackerApp() {
                   <span onClick={() => handleEdit(index, log.task)} style={{ cursor: 'pointer' }}>{log.task}</span>
                 )}
               </td>
-              <td>
-                <span onClick={() => setEditingIndex(index)} style={{ cursor: 'pointer' }}>{log.startTime}</span>
-              </td>
-              <td>
-                <span onClick={() => setEditingIndex(index)} style={{ cursor: 'pointer' }}>{log.stopTime}</span>
-              </td>
-              <td>
-                <span onClick={() => setEditingIndex(index)} style={{ cursor: 'pointer' }}>{log.duration}</span>
-              </td>
+              <td>{log.startTime}</td>
+              <td>{log.stopTime}</td>
+              <td>{log.duration}</td>
               <td onClick={() => handleDelete(index)} style={{ cursor: 'pointer', textAlign: 'center' }}>
-                <img src="https://cdn-icons-png.flaticon.com/512/6861/6861362.png" alt="delete" style={{ width: '20px', height: '20px' }} />
+                <img src="https://cdn-icons-png.flaticon.com/512/3405/3405244.png" alt="delete" style={{ width: '20px', height: '20px' }} />
               </td>
             </tr>
           ))}
