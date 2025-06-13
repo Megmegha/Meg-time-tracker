@@ -109,6 +109,22 @@ export default function TimeTrackerApp() {
     setEditedTask("");
   };
 
+  const updateLogField = (index, field, value) => {
+    const updatedLogs = [...logs];
+    updatedLogs[index][field] = value;
+
+    if (field === 'startTime' || field === 'stopTime') {
+      const start = new Date(`1970-01-01T${updatedLogs[index].startTime}`);
+      const stop = new Date(`1970-01-01T${updatedLogs[index].stopTime}`);
+      if (!isNaN(start) && !isNaN(stop) && stop > start) {
+        const seconds = (stop - start) / 1000;
+        updatedLogs[index].duration = formatDuration(seconds);
+      }
+    }
+
+    setLogs(updatedLogs);
+  };
+
   const buttonStyle = {
     border: 'none',
     padding: '10px 16px',
@@ -200,9 +216,27 @@ export default function TimeTrackerApp() {
                   <span onClick={() => handleEdit(index, log.task)} style={{ cursor: 'pointer' }}>{log.task}</span>
                 )}
               </td>
-              <td>{log.startTime}</td>
-              <td>{log.stopTime}</td>
-              <td>{log.duration}</td>
+              <td>
+                <input
+                  type="time"
+                  value={log.startTime}
+                  onChange={(e) => updateLogField(index, 'startTime', e.target.value)}
+                />
+              </td>
+              <td>
+                <input
+                  type="time"
+                  value={log.stopTime}
+                  onChange={(e) => updateLogField(index, 'stopTime', e.target.value)}
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={log.duration}
+                  onChange={(e) => updateLogField(index, 'duration', e.target.value)}
+                />
+              </td>
               <td onClick={() => handleDelete(index)} style={{ cursor: 'pointer', textAlign: 'center' }}>
                 <img src="https://cdn-icons-png.flaticon.com/512/3405/3405244.png" alt="delete" style={{ width: '20px', height: '20px' }} />
               </td>
